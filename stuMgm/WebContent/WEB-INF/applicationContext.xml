@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -15,7 +15,7 @@
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/myapp?characterEncoding=gbk&amp;useUnicode=true"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="password" value="mysql"></property>
 
 	</bean>
 	<bean id="sessionFactory"
@@ -38,6 +38,7 @@
 				<value>edu/jyu/stumgm/entity/Student.hbm.xml</value>
 			 	<value>edu/jyu/stumgm/entity/Grade.hbm.xml</value>
 				<value>edu/jyu/stumgm/entity/User.hbm.xml</value>
+				<value>edu/jyu/stumgm/entity/Elective.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -61,7 +62,12 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoPointcut"/>
 	</aop:config>	
  -->
-	<bean id="studentDAO" class="edu.jyu.stumgm.dao.StudentDAO">
+ 
+ 	<bean id="studentDAO" class="edu.jyu.stumgm.dao.StudentDAO">
+		<property name="sessionFactory"  ref="sessionFactory"></property>
+	</bean>
+ 	
+	<bean id="electiveDAO" class="edu.jyu.stumgm.dao.ElectiveDAO">
 		<property name="sessionFactory"  ref="sessionFactory"></property>
 	</bean>
 
@@ -74,5 +80,6 @@
 	</bean>
 	<bean id="studentBO" class="edu.jyu.stumgm.bo.StudentBO"></bean>
  	<bean id="gradeBO" class="edu.jyu.stumgm.bo.GradeBO"></bean>
-	<bean id="userBO" class="edu.jyu.stumgm.bo.UserBO"></bean> 
+	<bean id="userBO" class="edu.jyu.stumgm.bo.UserBO"></bean>
+	<bean id="electiveBO" class="edu.jyu.stumgm.bo.ElectiveBO"></bean> 
 </beans>

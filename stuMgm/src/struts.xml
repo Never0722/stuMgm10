@@ -101,4 +101,39 @@
 		</action>
 		
 	</package>
+	
+	<package name="elective" extends="securityControl" namespace="/">
+		<action name="addElective" class="edu.jyu.stumgm.action.AddElectiveAction">
+			<result name="electiveadmin" type="redirectAction">
+            	<param name="actionName">electiveAdmin</param>
+            	<param name="namespace">/</param>
+        	</result>
+        	<result name="list" type="redirectAction">
+            	<param name="actionName">electiveList</param>
+            	<param name="namespace">/</param>
+        	</result>
+        	<result name="add">/jsp/elective/createelective.jsp</result>
+		</action>
+		
+		<action name="electiveList" class="edu.jyu.stumgm.action.ElectiveListAction">
+			<result>/jsp/elective/electivelist.jsp</result>
+		</action>
+		
+		<action name="electiveAdmin" class="edu.jyu.stumgm.action.ElectiveAdminAction">
+			<result>/jsp/elective/electiveadmin.jsp</result>
+		</action>
+		
+		<action name="deleteElective" class="edu.jyu.stumgm.action.DeleteElectiveAction">
+			<result type="redirectAction">
+            	<param name="actionName">electiveAdmin</param>
+            	<param name="namespace">/</param>
+        	</result>
+		</action>
+		
+		<action name="electiveSearch" class="edu.jyu.stumgm.action.ElectiveSearchAction">
+			<result>/jsp/grade/gradequery.jsp</result>
+		</action>
+		
+		
+	</package>
 </struts>    
